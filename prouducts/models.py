@@ -23,6 +23,7 @@ class items(models.Model):
     vedio=models.URLField(_('vedio'),null=True,blank=True)
     cateogry=models.ForeignKey('cateogry',verbose_name=_('cateogry'),related_name='cateogry_item',on_delete=models.SET_NULL,null=True,blank=True)
     brand=models.ForeignKey('brand',verbose_name=_('brand'),related_name='brand_item',on_delete=models.SET_NULL,null=True,blank=True)
+    itemimage=models.ImageField(_('Image'),upload_to='items')
     def __str__(self) -> str:
         return self.name
 

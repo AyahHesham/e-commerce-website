@@ -2,7 +2,7 @@ from itertools import product
 from multiprocessing import get_context
 from django.shortcuts import render
 from django.views.generic import ListView ,DetailView
-from .models import items,itemimages
+from .models import items,itemimages,cateogry
 # Create your views here.
 class items_list(ListView):
     model=items
@@ -19,4 +19,5 @@ class itemsDetail(DetailView):
         myitem=self.get_object()
         #the second fun will immplement by second contesxt from other class
         context["image"]=itemimages.objects.filter(items=myitem)
+        context["related"]=items.objects.filter(cateogry=myitem.cateogry)#[1:10]#toslice
         return context
