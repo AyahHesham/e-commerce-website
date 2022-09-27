@@ -1,6 +1,3 @@
-from distutils.command.upload import upload
-from pyexpat import features, model
-from turtle import mode
 from django.db import models
 from django.utils.translation import gettext as _
 from django.contrib.auth.models import User

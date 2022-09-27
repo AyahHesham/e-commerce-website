@@ -2,7 +2,8 @@ from itertools import product
 from multiprocessing import get_context
 from django.shortcuts import render
 from django.views.generic import ListView ,DetailView
-from .models import items,itemimages,cateogry
+from .models import items,itemimages,cateogry,brand
+from django.db.models import Count
 # Create your views here.
 class items_list(ListView):
     model=items
@@ -20,4 +21,27 @@ class itemsDetail(DetailView):
         #the second fun will immplement by second contesxt from other class
         context["image"]=itemimages.objects.filter(items=myitem)
         context["related"]=items.objects.filter(cateogry=myitem.cateogry)#[1:10]#toslice
+        return context
+
+class brand_list(ListView):
+    model=brand
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context["brands"]=brand.objects.all().annotate(items_count=Count('brand_item'))
+        return context
+
+
+class brand_detail(DetailView):
+    model=brand
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        brand=self.get_object()
+        context["brand_product"]=items.objects.filter(brand=brand)
+        return context
+
+class category_list(ListView):
+    model=cateogry
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context["cateogry"]=cateogry.objects.all().annotate(items_count=Count('cateogry_item'))
         return context
