@@ -68,7 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'company.company_context_processor.get_company_info', #appname.filename.fuctionname
+                'sitting.company_context_processor.get_company_info', #appname.filename.fuctionname
                 #company_context_processor
             ],
         },
