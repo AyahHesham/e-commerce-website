@@ -12,7 +12,29 @@ import random
 #the models we will add dummy data in them
 from prouducts.models import items,cateogry,brand
 #n:the numbers of dummy data will add
-
+def seed_brand(n):
+    #faker object
+    fake=Faker()
+    images=['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg']
+    for _ in range(n):
+        name=fake.name()
+        img=f"brand/{images[random.randint(0,4)]}"
+        brand.objects.create(
+            name=name,
+            image=img
+        )
+    print(f'sucssefuly added {n} brand')
+def seed_cateogry(n):
+    fake=Faker()
+    images=['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg']
+    for _ in range(n):
+        name=fake.name()
+        img=f"cateogry/{images[random.randint(0,4)]}"
+        cateogry.objects.create(
+            name=name,
+            image=img
+        )
+    print(f'sucssefuly added {n} cat')
 
 def seed_items(n):
     fake=Faker()
@@ -21,14 +43,14 @@ def seed_items(n):
     for _ in range(n):
         name=fake.name()
         #slice for the numbers of images randomly
-        flag=flag_type[random.randint(0,2)],
-        price=round(random.uniform(20.99,99.99),2),
-        sku=random.randint(1,1000),
-        subtitle=fake.text(max_nb_chars=250),
-        vedio='https://youtu.be/LLJSfU8oD60',
+        flag=flag_type[random.randint(0,2)]
+        price=round(random.uniform(20.99,99.99),2)
+        sku=random.randint(1,1000)
+        subtitle=fake.text(max_nb_chars=250)
+        vedio='https://youtu.be/LLJSfU8oD60'
         #get all cat -->we can't get relation by num -->from 1to 10 that dummy data of category was added
-        Cateogry=cateogry.objects.get(id=random.randint(1,10)),
-        Brand=brand.objects.get(id=random.randint(1,10)),
+        Cateogry=cateogry.objects.get(id=random.randint(73,92))
+        Brand=brand.objects.get(id=random.randint(68,77))
         img=f"items/{images[random.randint(0,9)]}"
 
         items.objects.create(
