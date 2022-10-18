@@ -67,47 +67,49 @@
                 </div>
                 <!--  لو بترو هيظهر غير كدا لاis_paginatedلو عملت دالة الباجينيت بترجع متغير قيمتة بترو او فولس اسمه -->
                 {% if is_paginated %}
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="bottom-paginate">
-                            <p class="page-info">Showing 12 of 60 Results</p>
-                            <ul class="pagination">
-                                <!--previous
-                                there is var named previouse responsable of the previouse page-->
-                                {% if page_obj.has_previous %}
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-long-arrow-alt-left"></i>
-                                    </a>
-                                </li>
-                                {% else %}
-                                <i class="fas fa-long-arrow-alt-left" disabled></i>
-                                {% endif %}
-
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-
-                                
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">...</li>
-                                <li class="page-item"><a class="page-link" href="#">60</a></li>
-                               
-                                {% if page_obj.has_next %}
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-long-arrow-alt-right"></i>
-                                    </a>
-                                </li>
-                                {% else %}
-                                <i class="fas fa-long-arrow-alt-right" disabled></i>
-                                {% endif %}
-                            </ul>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="bottom-paginate">
+                                <p class="page-info">Showing 12 of 60 Results</p>
+                                <ul class="pagination">
+                                    <!--previous
+                                    there is var named page_object returned from the var of paginated in veiw
+                                    in cbv we will ask irt if there is pages befor you or not-->
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{page_obj.has_previous_page_number}}">
+                                                <i class="fas fa-long-arrow-alt-left"></i>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item" disabled><i class="fas fa-long-arrow-alt-left"></i></i>
+                                    {% endif %}
+                                    <!--paginator returned from view from cbv for active page-->
+                                    {% for page in paginator.page_range %}
+                                        {% if page_obj.number == page %}
+                                            <li class="page-item"><a class="page-link active" href="#">{{page}}</a></li>
+                                        {% else %}
+                                            <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if page_obj.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{page_obj.has_next_page_number}}">
+                                                <i class="fas fa-long-arrow-alt-right"></i>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item" disabled></i>
+                                    {% endif %}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
         </section>
         <!--=====================================
                     BRAND LIST PART END
         =======================================-->
         {% endblock body %}
+        <!--الباجينيشن متقسم ل 3 اجزاء ال بريفيس والنيكست والاكتيف واللي ف النص -->

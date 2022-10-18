@@ -4,6 +4,15 @@ from django.shortcuts import render
 from django.views.generic import ListView ,DetailView
 from .models import items,itemimages,cateogry,brand
 from django.db.models import Count
+
+def postList(requset):
+    #objects=items.objects.all()
+    #gt=greater than
+    #lt=lettle than
+    #lte=lettle than or equal the same in gte
+    #objects=items.objects.filter(price__gt=30)
+    objects=items.objects.filter(price__range=[30,100])
+    return render(requset,'prouducts/test_list.html',{'items':objects})
 # Create your views here.
 class items_list(ListView):
     model=items
