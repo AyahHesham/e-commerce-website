@@ -7,6 +7,8 @@ from django.db.models import Count
 # Create your views here.
 class items_list(ListView):
     model=items
+    #paginate is function in cbv
+    paginate_by=20
 # there are method in detail veiw contain the context two get details of the model but i want show the image from the second
 #model in second class "proudct image " to show them by other context so i will make override
 class itemsDetail(DetailView):
