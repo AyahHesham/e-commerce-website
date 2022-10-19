@@ -3,11 +3,11 @@ from multiprocessing import get_context
 from django.shortcuts import render
 from django.views.generic import ListView ,DetailView
 from .models import items,itemimages,cateogry,brand
-from django.db.models import Count,Q
+from django.db.models import Count,Q,F
 
 
 def postList(requset):
-    objects=items.objects.all()
+    #objects=items.objects.all()
     #use filter
     #gt=greater than
     #lt=lettle than
@@ -26,8 +26,10 @@ def postList(requset):
     #objects=items.objects.filter(Q(price__gt=30)&~Q(name__startswith='k'))
     #and
     #objects=items.objects.filter(Q(price__gt=30)&Q(name__startswith='k'))
-
-
+    #for compaire two columns we will use refrance felied(f)
+    #objects=items.objects.filter(price=F('quantity'))
+    #for compare two column relations
+    #objects=items.objects.filter(price=F('category__id'))
     return render(requset,'prouducts/test_list.html',{'items':objects})
 # Create your views here.
 class items_list(ListView):
