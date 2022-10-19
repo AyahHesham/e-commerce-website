@@ -3,7 +3,8 @@ from multiprocessing import get_context
 from django.shortcuts import render
 from django.views.generic import ListView ,DetailView
 from .models import items,itemimages,cateogry,brand
-from django.db.models import Count
+from django.db.models import Count,Q
+
 
 def postList(requset):
     objects=items.objects.all()
@@ -19,6 +20,14 @@ def postList(requset):
     #objects=items.objects.filter(name__startswith='k')
     #objects=items.objects.filter(name__endswith='r')
     #objects=items.objects.filter(name__isnull=True)
+    #or
+    #objects=items.objects.filter(Q(price__gt=30)|Q(name__startswith='k'))
+    #not and
+    #objects=items.objects.filter(Q(price__gt=30)&~Q(name__startswith='k'))
+    #and
+    #objects=items.objects.filter(Q(price__gt=30)&Q(name__startswith='k'))
+
+
     return render(requset,'prouducts/test_list.html',{'items':objects})
 # Create your views here.
 class items_list(ListView):
