@@ -6,12 +6,19 @@ from .models import items,itemimages,cateogry,brand
 from django.db.models import Count
 
 def postList(requset):
-    #objects=items.objects.all()
+    objects=items.objects.all()
+    #use filter
     #gt=greater than
     #lt=lettle than
     #lte=lettle than or equal the same in gte
     #objects=items.objects.filter(price__gt=30)
-    objects=items.objects.filter(price__range=[30,100])
+    #objects=items.objects.filter(price__range=[30,100])
+    #objects=items.objects.filter(cateogry__id__gt=10)
+    #objects=items.objects.filter(cateogry__id__lt=10)
+    #objects=items.objects.filter(name__contains='k')
+    #objects=items.objects.filter(name__startswith='k')
+    #objects=items.objects.filter(name__endswith='r')
+    #objects=items.objects.filter(name__isnull=True)
     return render(requset,'prouducts/test_list.html',{'items':objects})
 # Create your views here.
 class items_list(ListView):
