@@ -149,3 +149,6 @@ INTERNAL_IPS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = [ 
+    'account.backends.emailBackend'
+]
