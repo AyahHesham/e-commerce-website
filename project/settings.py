@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'accounts',
     'taggit',
     'debug_toolbar',
+    'django_countries',
+    
 ]
 
 MIDDLEWARE = [
@@ -145,3 +147,5 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+

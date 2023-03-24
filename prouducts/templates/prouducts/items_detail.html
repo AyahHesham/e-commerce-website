@@ -37,13 +37,14 @@
                             </div>
                             <ul class="details-preview"> 
                                 <!--الاسم اللي في اللوب. أسم العمود بتاع الاوبجكت-->
-                                {% for img in image %}
-                                    <li><img src="{{img.image.url}}" alt="product"></li>
+                                {% for img in itemimage %}
+                                    <li><img src="{{img.itemimage.url}}" alt="product"></li>
                                 {% endfor %}
+                               
                             </ul>
                             <ul class="details-thumb">
-                                {% for img in image %}
-                                    <li><img src="{{img.image.url}}" alt="product"></li>
+                                {% for img in itemimage %}
+                                    <li><img src="{{img.itemimage.url}}" alt="product"></li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -66,7 +67,7 @@
                                     <i class="icofont-arrow-right"></i>
                                     <span class="product-nav-popup">
                                         <img src="images/product/03.jpg" alt="product">
-                                        <small>{{items}</small>
+                                        <small>{{items}}</small>
                                     </span>
                                 </a>
                             </li>
