@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
     'prouducts',
     'sitting',
     'orders',
-    'accounts',
     'taggit',
     'debug_toolbar',
     'django_countries',
@@ -150,5 +150,5 @@ INTERNAL_IPS = [
 
 
 AUTHENTICATION_BACKENDS = [ 
-    'account.backends.emailBackend'
+    'accounts.backends.emailBackend'
 ]
